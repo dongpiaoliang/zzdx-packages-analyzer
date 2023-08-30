@@ -1,6 +1,6 @@
 {
   "name": "zzdx-packages-analyzer",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "scripts": {
     "lint:lint-staged": "lint-staged",
     "lint": "eslint . --ext .jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
@@ -8,7 +8,7 @@
   },
   "bin": {
     "zzdx-packages-analyzer-cli": "./bin/cli.js",
-    "zpa-cli": "./bin/cli.js",
+    "zpa-cli": "./bin/cli.js"
   },
   "dependencies": {
     "child_process": "^1.0.2",
