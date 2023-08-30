@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>ZZDX Packages Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div ref="chartContainer" class="chart-container"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@3.2.28/dist/vue.global.prod.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script id="dataEcharts"></script>
+<script type="module">
+    // 初始化 Vue 应用
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'Hello, Vue!'
+            };
+        },
+        setup() {
+            // 创建 ref 引用
+            const chartContainer = Vue.ref(null);
+            Vue.onMounted(async () => {
+                // 在 mounted 阶段获取 DOM 元素并初始化 ECharts
+                const dom = chartContainer.value;
+                const myChart = echarts.init(dom, null, {
+                    renderer: 'canvas',
+                    useDirtyRect: false
+                });
+                myChart.showLoading();
+                const resizeHandler = () => {
+                    if (myChart) {
+                        myChart.resize();
+                    }
+                };
+                window.addEventListener('resize', resizeHandler);
+                // 取消监听，确保组件卸载时移除监听
+                Vue.onUnmounted(() => {
+                    window.removeEventListener('resize', resizeHandler);
+                });
+
+                // 加载数据
+                const graph = dataEcharts
+                graph.nodes.forEach(function (node) {
+                    node.label = {
+                        show: node.symbolSize > -100
+                    };
+                });
+                const option = {
+                    title: {
+                        text: '依赖关系',
+                        subtext: 'Default layout',
+                        top: 'bottom',
+                        left: 'right'
+                    },
+                    tooltip: {},
+                    legend: [
+                        {
+                            // selectedMode: 'single',
+                            data: graph.categories?.map(function (a) {
+                                return a.name;
+                            })
+                        }
+                    ],
+                    animationDuration: 1500,
+                    animationEasingUpdate: 'quinticInOut',
+                    series: [
+                        {
+                            type: 'graph',
+                            layout: 'none',
+                            data: graph.nodes,
+                            links: graph.links,
+                            categories: graph.categories,
+                            roam: true,
+                            label: {
+                                show: true,
+                                position: 'right',
+                                formatter: '{b}'  // '{b} v{c}'
+                            },
+                            lineStyle: {
+                                color: 'source',
+                                curveness: 0.3
+                            },
+                            emphasis: {
+                                focus: 'adjacency',
+                                lineStyle: {
+                                    width: 10
+                                }
+                            }
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+                myChart.hideLoading();
+            });
+            return {
+                chartContainer
+            }
+        }
+    });
+
+    // 挂载 Vue 应用到 #app 元素上
+    app.mount('#app');
+</script>
+</body>
+</html>

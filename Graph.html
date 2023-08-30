@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <title>ZZDX Packages Analyzer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div ref="chartContainer" class="chart-container"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@3.2.28/dist/vue.global.prod.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+<script id="dataEcharts">
+ const dataEcharts = {
+  "nodes": [
+    {
+      "id": "0",
+      "name": "zzdx-packages-analyzer",
+      "symbolSize": 21,
+      "x": -150,
+      "y": -100,
+      "value": "0.0.1",
+      "category": "0"
+    },
+    {
+      "id": "1",
+      "name": "child_process",
+      "symbolSize": 17,
+      "x": -100,
+      "y": -180,
+      "value": "1.0.2",
+      "category": "1"
+    },
+    {
+      "id": "2",
+      "name": "commander",
+      "symbolSize": 17,
+      "x": -100,
+      "y": -160,
+      "value": "11.0.0",
+      "category": "1"
+    },
+    {
+      "id": "3",
+      "name": "fs",
+      "symbolSize": 17,
+      "x": -100,
+      "y": -140,
+      "value": "0.0.1-security",
+      "category": "1"
+    },
+    {
+      "id": "4",
+      "name": "open",
+      "symbolSize": 17,
+      "x": -100,
+      "y": -120,
+      "value": "9.1.0",
+      "category": "1"
+    },
+    {
+      "id": "5",
+      "name": "default-browser",
+      "symbolSize": 13,
+      "x": -50,
+      "y": -200,
+      "value": "4.0.0",
+      "category": "2"
+    },
+    {
+      "id": "6",
+      "name": "bundle-name",
+      "symbolSize": 9,
+      "x": 0,
+      "y": -280,
+      "value": "3.0.0",
+      "category": "3"
+    },
+    {
+      "id": "7",
+      "name": "run-applescript",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -360,
+      "value": "5.0.0",
+      "category": "4"
+    },
+    {
+      "id": "8",
+      "name": "default-browser-id",
+      "symbolSize": 9,
+      "x": 0,
+      "y": -240,
+      "value": "3.0.0",
+      "category": "3"
+    },
+    {
+      "id": "9",
+      "name": "bplist-parser",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -320,
+      "value": "0.2.0",
+      "category": "4"
+    },
+    {
+      "id": "10",
+      "name": "untildify",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -300,
+      "value": "4.0.0",
+      "category": "4"
+    },
+    {
+      "id": "11",
+      "name": "execa",
+      "symbolSize": 9,
+      "x": 0,
+      "y": -180,
+      "value": "7.2.0",
+      "category": "3"
+    },
+    {
+      "id": "12",
+      "name": "cross-spawn",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -260,
+      "value": "7.0.3",
+      "category": "4"
+    },
+    {
+      "id": "13",
+      "name": "get-stream",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -240,
+      "value": "6.0.1",
+      "category": "4"
+    },
+    {
+      "id": "14",
+      "name": "human-signals",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -220,
+      "value": "2.1.0",
+      "category": "4"
+    },
+    {
+      "id": "15",
+      "name": "is-stream",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -200,
+      "value": "2.0.1",
+      "category": "4"
+    },
+    {
+      "id": "16",
+      "name": "merge-stream",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -180,
+      "value": "2.0.0",
+      "category": "4"
+    },
+    {
+      "id": "17",
+      "name": "npm-run-path",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -160,
+      "value": "4.0.1",
+      "category": "4"
+    },
+    {
+      "id": "18",
+      "name": "onetime",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -140,
+      "value": "5.1.2",
+      "category": "4"
+    },
+    {
+      "id": "19",
+      "name": "signal-exit",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -120,
+      "value": "3.0.7",
+      "category": "4"
+    },
+    {
+      "id": "20",
+      "name": "strip-final-newline",
+      "symbolSize": 5,
+      "x": 50,
+      "y": -100,
+      "value": "2.0.0",
+      "category": "4"
+    },
+    {
+      "id": "21",
+      "name": "titleize",
+      "symbolSize": 9,
+      "x": 0,
+      "y": 20,
+      "value": "3.0.0",
+      "category": "3"
+    },
+    {
+      "id": "22",
+      "name": "define-lazy-prop",
+      "symbolSize": 13,
+      "x": -50,
+      "y": 140,
+      "value": "3.0.0",
+      "category": "2"
+    },
+    {
+      "id": "23",
+      "name": "is-inside-container",
+      "symbolSize": 13,
+      "x": -50,
+      "y": 160,
+      "value": "1.0.0",
+      "category": "2"
+    },
+    {
+      "id": "24",
+      "name": "is-docker",
+      "symbolSize": 9,
+      "x": 0,
+      "y": 80,
+      "value": "3.0.0",
+      "category": "3"
+    },
+    {
+      "id": "25",
+      "name": "is-wsl",
+      "symbolSize": 13,
+      "x": -50,
+      "y": 200,
+      "value": "2.2.0",
+      "category": "2"
+    },
+    {
+      "id": "26",
+      "name": "is-docker",
+      "symbolSize": 9,
+      "x": 0,
+      "y": 120,
+      "value": "2.2.1",
+      "category": "3"
+    },
+    {
+      "id": "27",
+      "name": "path",
+      "symbolSize": 17,
+      "x": -100,
+      "y": 340,
+      "value": "0.12.7",
+      "category": "1"
+    },
+    {
+      "id": "28",
+      "name": "process",
+      "symbolSize": 13,
+      "x": -50,
+      "y": 260,
+      "value": "0.11.10",
+      "category": "2"
+    },
+    {
+      "id": "29",
+      "name": "util",
+      "symbolSize": 13,
+      "x": -50,
+      "y": 280,
+      "value": "0.10.4",
+      "category": "2"
+    },
+    {
+      "id": "30",
+      "name": "inherits",
+      "symbolSize": 9,
+      "x": 0,
+      "y": 200,
+      "value": "2.0.3",
+      "category": "3"
+    }
+  ],
+  "links": [
+    {
+      "source": "0",
+      "target": "1"
+    },
+    {
+      "source": "0",
+      "target": "2"
+    },
+    {
+      "source": "0",
+      "target": "3"
+    },
+    {
+      "source": "0",
+      "target": "4"
+    },
+    {
+      "source": "4",
+      "target": "5"
+    },
+    {
+      "source": "5",
+      "target": "6"
+    },
+    {
+      "source": "6",
+      "target": "7"
+    },
+    {
+      "source": "5",
+      "target": "8"
+    },
+    {
+      "source": "8",
+      "target": "9"
+    },
+    {
+      "source": "8",
+      "target": "10"
+    },
+    {
+      "source": "5",
+      "target": "11"
+    },
+    {
+      "source": "11",
+      "target": "12"
+    },
+    {
+      "source": "11",
+      "target": "13"
+    },
+    {
+      "source": "11",
+      "target": "14"
+    },
+    {
+      "source": "11",
+      "target": "15"
+    },
+    {
+      "source": "11",
+      "target": "16"
+    },
+    {
+      "source": "11",
+      "target": "17"
+    },
+    {
+      "source": "11",
+      "target": "18"
+    },
+    {
+      "source": "11",
+      "target": "19"
+    },
+    {
+      "source": "11",
+      "target": "20"
+    },
+    {
+      "source": "5",
+      "target": "21"
+    },
+    {
+      "source": "4",
+      "target": "22"
+    },
+    {
+      "source": "4",
+      "target": "23"
+    },
+    {
+      "source": "23",
+      "target": "24"
+    },
+    {
+      "source": "4",
+      "target": "25"
+    },
+    {
+      "source": "25",
+      "target": "26"
+    },
+    {
+      "source": "0",
+      "target": "27"
+    },
+    {
+      "source": "27",
+      "target": "28"
+    },
+    {
+      "source": "27",
+      "target": "29"
+    },
+    {
+      "source": "29",
+      "target": "30"
+    }
+  ],
+  "categories": [
+    {
+      "name": "0"
+    },
+    {
+      "name": "1"
+    },
+    {
+      "name": "1"
+    },
+    {
+      "name": "1"
+    },
+    {
+      "name": "1"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "3"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "3"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "3"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "4"
+    },
+    {
+      "name": "3"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "3"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "3"
+    },
+    {
+      "name": "1"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "2"
+    },
+    {
+      "name": "3"
+    }
+  ]
+} 
+</script>
+<script type="module">
+    // 初始化 Vue 应用
+    const app = Vue.createApp({
+        data() {
+            return {
+                message: 'Hello, Vue!'
+            };
+        },
+        setup() {
+            // 创建 ref 引用
+            const chartContainer = Vue.ref(null);
+            Vue.onMounted(async () => {
+                // 在 mounted 阶段获取 DOM 元素并初始化 ECharts
+                const dom = chartContainer.value;
+                const myChart = echarts.init(dom, null, {
+                    renderer: 'canvas',
+                    useDirtyRect: false
+                });
+                myChart.showLoading();
+                const resizeHandler = () => {
+                    if (myChart) {
+                        myChart.resize();
+                    }
+                };
+                window.addEventListener('resize', resizeHandler);
+                // 取消监听，确保组件卸载时移除监听
+                Vue.onUnmounted(() => {
+                    window.removeEventListener('resize', resizeHandler);
+                });
+
+                // 加载数据
+                const graph = dataEcharts
+                graph.nodes.forEach(function (node) {
+                    node.label = {
+                        show: node.symbolSize > -100
+                    };
+                });
+                const option = {
+                    title: {
+                        text: '依赖关系',
+                        subtext: 'Default layout',
+                        top: 'bottom',
+                        left: 'right'
+                    },
+                    tooltip: {},
+                    legend: [
+                        {
+                            // selectedMode: 'single',
+                            data: graph.categories?.map(function (a) {
+                                return a.name;
+                            })
+                        }
+                    ],
+                    animationDuration: 1500,
+                    animationEasingUpdate: 'quinticInOut',
+                    series: [
+                        {
+                            type: 'graph',
+                            layout: 'none',
+                            data: graph.nodes,
+                            links: graph.links,
+                            categories: graph.categories,
+                            roam: true,
+                            label: {
+                                show: true,
+                                position: 'right',
+                                formatter: '{b} v{c}'
+                            },
+                            lineStyle: {
+                                color: 'source',
+                                curveness: 0.3
+                            },
+                            emphasis: {
+                                focus: 'adjacency',
+                                lineStyle: {
+                                    width: 10
+                                }
+                            }
+                        }
+                    ]
+                };
+                myChart.setOption(option);
+                myChart.hideLoading();
+            });
+            return {
+                chartContainer
+            }
+        }
+    });
+
+    // 挂载 Vue 应用到 #app 元素上
+    app.mount('#app');
+</script>
+</body>
+</html>
